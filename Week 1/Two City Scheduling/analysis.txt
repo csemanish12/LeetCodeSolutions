@@ -1,0 +1,25 @@
+solution Approach:
+1. sort the list based on difference of cost among two cities in descending order
+
+input:
+     [[259, 770], [448, 54], [926, 667]], [[184, 139], , [840, 118], [577, 469]]
+diff:    511          394        259          45             722        108
+
+
+sorted:
+     [[840, 118], [259, 770], [448, 54], [926, 667], [577, 469], [184, 139]]
+diff:   722           511         394        259        108          45
+
+
+Here, sorting the costs based on difference(in descending order) is very critical. you will want to chose
+to visit the city whose cost is comparatively low that other. In case of [840,118] ,to visit city A,
+cost=840 but to visit city B,the cost is 118.
+That means you can save 722 if you choose to visit city B instead of city A.
+in the case [184,139], it does not matter what you chose, because the cost to visit both city is quite
+similar (difference is only 45).
+so by sorting in this manner you can greatly reduce your cost.
+
+
+2. choose city A only when city b's capacity has already been fulfilled or (cost to visit city a is less
+and city a's capacity is not full)
+3. else choose city b
