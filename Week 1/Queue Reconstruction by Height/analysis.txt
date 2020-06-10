@@ -1,0 +1,61 @@
+Input:
+[[7,0], [4,4], [7,1], [5,0], [6,1], [5,2]]
+
+# sort queue by height
+
+question analysis:
+There are 6 list meaning 6 persons in the queue. each person is represent by [h,k].
+
+Here [7,0] represents a person where
+whose 7 represents the height of the person and 0 represents the number
+of people(whose height is greater or equal to 7) that
+can be in front of this person in the queue
+similarly,
+4,4 means , the height of the person is 4 and number of people that can be in front of this person in the
+queue is 4.
+
+so when we look at the queue,
+*first person in the queue is [7,0]
+-while arranging by height:- the number of people (with height greater or equal to 7) in front of him/her
+ should be zero. which is true in this case.
+*second person in the queue is [4,4]
+-while arranging by height:- the number of people(...)in front of him should be 4 (max).
+ currently, there is one person in front of him(with height > 4).the sorting in ok so far.
+*third person in the queue is [7,1]
+--while arranging by height:- the number of people(...)in front of him should be 1 (max).
+ currently, there are two person([7,0] and [4,4]) in front of this person.
+ the height of first person is 7 and second person is 4. the sorting is ok so far (as there is only one
+ person with height greater or equal to 7 in front of him
+*fourth person in the queue is [5,0]
+-while arranging by height:- the number of people(...)in front of him should be 0 (max).
+ currently, there are three persons([7,0], [4,4] and [7,1]) in front of him/her.
+ the height of two person is greater or equal to 5 ([7,0], [7,1]). the queue is not sorted.
+ we need to move this person([5,0]) somewhere in the queue, where only with person with height small than 5
+ can stand in front of him/her
+
+Note: h,k or  [4,4]  represents a person and condition that must be full filled while sorting the queue
+      by height. here k=4 does not mean that there are 4 person in front of him or there should be 4 person.
+      it means that if this person stands in a queue then there can be maximum 4 people in front of him
+      whose height is greater or equal to 4. this implies that there can be several people in front of him
+      whose height is less than 4
+
+
+and so on for the rest.....
+
+insight: queue should be created in such a way that k in h,k is full filled for each person.
+eg: [h,k]= [7,0]. instead of viewing k as the number of people in front of this person in the queue,
+visualize k as the condition that needs to be full filled whenever you put this person in the queue.
+so the condition for the person to be put in the queue is that, no one with height greater or equal to 7
+should be in front of him/her. only people with height smaller than 7 can be placed in front of this
+person.
+
+
+Solution approach:
+1. sort the list by height(h) in descending. For same height,
+ sort the list by number of people in front(k) in ascending
+ i.e   [7,0], [7,1], [6,1], [5,0], [5,2]
+
+
+Output:
+[[5,0], [7,0], [5,2], [6,1], [4,4], [7,1]]
+
